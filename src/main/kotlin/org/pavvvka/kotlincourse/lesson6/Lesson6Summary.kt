@@ -4,7 +4,7 @@ fun main() {
 
     // Диапазоны
     val intRange: IntRange = -1..13 //возрастающий, включительно
-    val intRangeUntil = 1 until 10 // диапазон
+    val intRangeUntil = 1 until 10 // диапазон, правая не включена
     val downTo = 10 downTo 1
     val charRange: CharRange = 'd'..'r'
     val inRange = 2 in intRange // boolean

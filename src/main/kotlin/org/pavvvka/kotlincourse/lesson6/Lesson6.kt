@@ -19,14 +19,14 @@ fun main() {
     println("\nЗадание 3: <Определение Вида Транспорта>")
     println(chooseTransport(1))
     println(chooseTransport(-1))
-    println(chooseTransport(4))
+    println(chooseTransport(5))
     println(chooseTransport(100))
 
     println("\nЗадание 4: <Расчет Бонусных Баллов>")
-    println(calculateBonusPoints(1000.0))
-    println(calculateBonusPoints(1099.0))
-    println(calculateBonusPoints(1100.0))
-    println(calculateBonusPoints(20.0))
+    println(calculateBonusPoints(1000))
+    println(calculateBonusPoints(1099))
+    println(calculateBonusPoints(1100))
+    println(calculateBonusPoints(20))
 
     println("\nЗадание 5: Определение Типа Документа")
     println(getDocType(null))
@@ -83,7 +83,6 @@ fun convertTemperatureFormat(temp: Double?, format: String?): String {
 
 /**
  * Задание 5: "Определение Типа Документа"
- *
  */
 fun getDocType(type: String?): String {
     return when (type) {
@@ -97,14 +96,25 @@ fun getDocType(type: String?): String {
 
 /**
  * Задание 4: "Расчет Бонусных Баллов"
- *
  */
-fun calculateBonusPoints(purchase: Double): Double {
+fun calculateBonusPoints(purchase: Int): Int {
+//fun calculateBonusPoints(purchase: Double): Double {
     val rate = (purchase / 100)
-    return when {
-        rate in 1.0..10.0 -> rate * 2
-        rate > 10 -> rate * 5 - 30
-        else -> 0.0
+
+    /* для Double */
+//    return when {
+//        rate < 0 -> throw Exception("")
+//        rate in 1.0..10.0 -> rate * 2
+//        rate > 10 -> rate * 5 - 30
+//        else -> 0.0
+//    }
+
+    /* для Int */
+    return  when {
+        rate < 0 -> throw Exception("")
+        rate < 1 -> 0
+        rate < 11 -> rate * 2
+        else -> rate * 5 - 30
     }
 }
 
@@ -116,8 +126,10 @@ fun calculateBonusPoints(purchase: Double): Double {
 fun chooseTransport(rootLength: Int): String {
     return when {
         rootLength < 0 -> "вы на месте"
-        rootLength in 0..1 -> "пешком"
-        rootLength in 2..5 -> "велосипед"
+        rootLength < 2 -> "пешком"
+//        rootLength in 0..1 -> "пешком"
+        rootLength < 6 -> "велосипед"
+//        rootLength in 2..5 -> "велосипед"
         else -> "автотранспорт"
     }
 }
@@ -150,7 +162,10 @@ fun getSeason(monthNumber: Int?): String {
     if ((monthNumber ?: throw IllegalArgumentException("Missing monthNumber")) < 1 || monthNumber > 12) {
         return "month number could be in range between 1 and 12"
     }
-    return if (monthNumber > 8) {
+
+    return if (monthNumber !in 1..12) {
+        "Неверно указан месяц"
+    } else if (monthNumber > 8) {
         "Autumn"
     } else if (monthNumber > 5) {
         "Summer"
