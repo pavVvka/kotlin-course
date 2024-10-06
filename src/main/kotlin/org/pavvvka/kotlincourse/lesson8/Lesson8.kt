@@ -92,12 +92,45 @@ fun main() {
     Для выравнивания использовать функции форматирования строк с шаблоном (%s)
      */
     println("\n\n>>> Задание ---8---: Вывести таблицу умножения")
-    val size = 10
+    val size = 5
     matrix(size)
+    multiplyTable(5, 5)
 }
 
+fun multiplyTable(first: Int, second: Int) {
+    val formatLength = (first * second).toString().length + 1
+    print(" ".repeat(formatLength))
+
+    val xRange = getRange(first)
+    val yRange = getRange(second)
+    val formatter = "%${formatLength}s"
+    for (i in xRange) {
+        print(formatter.format("$i"))
+    }
+    println()
+    for (i in yRange) {
+        print(formatter.format("$i"))
+        for (j in xRange) {
+            print(formatter.format("${i * j}"))
+        }
+        println()
+    }
+}
+
+private fun getRange(size: Int): IntProgression {
+    return when {
+        size > 0 -> 1..size
+        size < 0 -> -1 downTo size
+        else -> throw IllegalArgumentException("Неверное значение size")
+
+    }
+}
+
+
+
 fun matrix(size: Int) {
-    val indent = (size * size).toString().length // ширина поля = кол. знаков у максимального числа
+    val indent = "${size * size}".length // ширина поля = кол. знаков у максимального числа
+//    val indent = (size * size).toString().length // ширина поля = кол. знаков у максимального числа
     val columnWidth = indent + 1 // поле плюс отступ
 
     // строка - заголовок
