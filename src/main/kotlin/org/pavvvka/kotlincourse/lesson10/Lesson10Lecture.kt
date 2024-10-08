@@ -20,14 +20,13 @@ fun main() {
     val readOnlyList2: List<Any> = listOf(1, "b", true) // неизменяемый список
 
     val mutableList: MutableList<String> = mutableListOf("a", "b", "c") // изменяемый: содержание+длина
+    val newList = MutableList(4) {""} // инициализация пустого списка с размером
 
     // Множества
     val numbersSet: Set<Int> = setOf(1, 2, 3, 4, 5, 5)
     val mutableNumbersSet: MutableSet<Int> = mutableSetOf(1, 2, 3, 4, 5, 5)
 
     // Методы
-
-
     println(readOnlyList1[1])
 
     mutableList.add("ui")
