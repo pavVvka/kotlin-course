@@ -19,7 +19,8 @@ fun main() {
 //    var doubleArrayFilled = doubleArrayOf(0.0, 2.0, 4.0, 8.0, 16.0)
     var dblArrayFilledInLoop = DoubleArray(5)
     for (i in dblArrayFilledInLoop.indices) {
-        dblArrayFilledInLoop[i] = (i * 2).toDouble()
+//        dblArrayFilledInLoop[i] = (i * 2).toDouble()
+        dblArrayFilledInLoop[i] = i * 2.0  // todouble
     }
     println("doubleArrayFilledOfDoubleIndex: Size=${dblArrayFilledInLoop.size} >>> ${dblArrayFilledInLoop.toList()}\n")
 
@@ -34,11 +35,15 @@ fun main() {
 
 //Задание 5: Работа с Nullable Элементами
 //Создайте массив из 3 nullable строк. Инициализируйте его одним null значением и двумя строками.
+    // Вариант1 создания
     val arrayNulable = arrayOfNulls<String>(3)
     for (i in 1..arrayNulable.lastIndex) {
         arrayNulable[i] = "string $i"
     }
-    println("arrayNulable: Size=${arrayNulable.size} >>> ${arrayNulable.toList()}\n")
+    println("Задание 5:  arrayNulable: Size=${arrayNulable.size} >>> ${arrayNulable.toList()}\n")
+    // Вариант2 создания
+    val arrayNulable2: Array<String?> = arrayOf(null, "asdas", "saa")
+    println("Задание 5:  arrayNulable2: Size=${arrayNulable2.size} >>> ${arrayNulable2.toList()}\n")
 
 //Задание 6: Копирование Массива
 //Создайте массив целых чисел и скопируйте его в новый массив в цикле.
@@ -58,12 +63,12 @@ fun main() {
     for (i in aOne.indices) {
         aThree[i] = aOne[i] - aTwo[i]
     }
-    println("aThree: Size=${aThree.size} >>> ${aThree.toList()}\n")
+    println("Задание 7: aThree: Size=${aThree.size} >>> ${aThree.toList()}\n")
 
 //Задание 8: Поиск Индекса Элемента
 //Создайте массив целых чисел. Найдите индекс элемента со значением 5. Если значения 5 нет в массиве, возвращаем -1. Реши задачу через цикл while.
     val arrayToSearch = arrayOf(1, 2, 3, 4, 5)
-    println("индекс элемента со значением 5: ${find5(arrayToSearch)}")
+    println("Задание 8: индекс элемента со значением 5: ${find5(arrayToSearch)}")
 
 //Задание 9: Перебор Массива
 //Создайте массив целых чисел. Используйте цикл для перебора массива и вывода каждого элемента в консоль. Напротив каждого элемента должно быть написано “чётное” или “нечётное”.
@@ -95,7 +100,9 @@ fun getSubstring(arrayList: Array<String>, key: String): String {
     return "...no such element"
 }
 
-
+/**
+ * ищет значение 5 и возвращает его индекс, или -1
+ */
 fun find5(arrayToSearch: Array<Int>): Int {
     var i = arrayToSearch.size
     println(i)
