@@ -295,5 +295,5 @@ fun phraseChecker(phrase: String): String {
     }
 }
 
-class Lesson8 {
+class Lesson8HomeWork {
 }

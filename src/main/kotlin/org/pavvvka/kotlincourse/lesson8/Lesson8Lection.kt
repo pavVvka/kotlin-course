@@ -129,14 +129,14 @@ fun main() {
 
     println(text.format(nick, city, ag, friendsCount, rating, balance))
 
-    println(">>> TXT: %s".format("Kotlin")) // >>> TXT: Kotlin
-    println(">>> TXT: %10s".format("Kotlin")) //>>> TXT:     Kotlin
+    println(">>> TXT: %s".format("Kotlin"))    //>>> TXT: Kotlin
+    println(">>> TXT: %10s".format("Kotlin"))  //>>> TXT:     Kotlin
     println(">>> TXT: %-10s".format("Kotlin")) //>>> TXT: Kotlin
 
-    println(">>> quantity: %10d".format(11)) //>>> quantity: 3
+    println(">>> quantity: %10d".format(11))  //>>> quantity: 3
     println(">>> quantity: %-10d".format(11)) //>>> quantity: 3
 
-    println(">>> PRICE: %.2f".format(3.14159)) //>>> PRICE: 3,14
+    println(">>> PRICE: %.2f".format(3.14159))  //>>> PRICE: 3,14
     println(">>> PRICE: %6.2f".format(3.14159)) //>>> PRICE:   3,14
     println(">>> PRICE decimal: %,d".format(1000000)) //>>> PRICE decimal: 1 000 000
 

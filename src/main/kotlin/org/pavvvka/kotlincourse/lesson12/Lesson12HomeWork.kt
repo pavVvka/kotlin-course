@@ -5,12 +5,16 @@ fun main() {
     println(nulFun("null"))
 
     printNumbersUntil(8)
+
     println("REFACTORING - drawRectangle1")
     drawRectangle(4, 5)
     println("REFACTORING - drawRectangle2")
     drawRectangle2(4,5)
 
-
+    println("\n==== REFACTORING - printMap1")
+    printMap(6, 4)
+    println("\n==== REFACTORING - printMap2")
+    printMap2(-15, -10)
 }
 
 // ==== Напиши валидную сигнатура метода
@@ -101,7 +105,7 @@ fun processList(s: List<String?>) {
     }
 }
 
-// REFACTORING
+// ======== REFACTORING 1
 
 fun drawRectangle(width: Int, height: Int) {
     if (width <= 0) throw IllegalArgumentException("width должно быть положительным и больше нуля")
@@ -149,7 +153,73 @@ fun horizontalLine(w: Int): String = "+" + "-".repeat(w - 2) + "+"
 fun column(w: Int, h: Int): String = ("|" + " ".repeat(w - 2) + "|\n").repeat(h - 2)
 
 
+// ======== REFACTORING 2  6*4
 
+fun printMap(xSize: Int, ySize: Int) {
+    if (xSize == 0) throw IllegalArgumentException("xSize не должно быть равным нулю")
+    if (ySize == 0) throw IllegalArgumentException("ySize не должно быть равным нулю")
+    val formatterSize = " $xSize".length
+    println(formatterSize)
+
+    val xRange = if (xSize > 0) {
+        0..xSize
+    } else {
+        0 downTo xSize
+    }
+    val yRange = if (ySize > 0) {
+        0..ySize
+    } else {
+        0 downTo ySize
+    }
+    print(" ".repeat(formatterSize))
+    for (i in xRange) {
+        print("%${formatterSize}s".format(i))
+    }
+    println()
+    for (i in yRange) {
+        print("%${formatterSize}s".format(i))
+        for (j in yRange) {
+            val m = i * j
+            val result = when {
+                m % 2 == 0 -> if (m % 3 == 0) "." else "*"
+                m % 5 == 0 -> if (i < 0) "-" else "+"
+                else -> "?"
+            }
+            print("%${formatterSize}s".format(result))
+        }
+        println()
+    }
+}
+
+fun printMap2(xSize: Int, ySize: Int) {
+    if (xSize == 0 || ySize == 0) throw IllegalArgumentException("Size не должно быть равным нулю")
+    val formatterSize = "$xSize".length + 1 // ширина макс числа + отступ между колонками
+    val xRange = if (xSize > 0) 0..xSize else 0 downTo xSize
+    val yRange = if (ySize > 0) 0..ySize else 0 downTo ySize
+    print(" ".repeat(formatterSize))
+    for (i in xRange) {
+        print("%${formatterSize + 1}s".format(i))
+    }
+    println()
+
+    for (i in yRange) {
+        print("%${formatterSize}s".format(i))
+        for (j in xRange) {
+            val m = i * j
+            print("%${formatterSize + 1}s".format(chooseSymbol(m, i)))
+        }
+        println()
+    }
+}
+
+fun chooseSymbol(m: Int, i: Int): String {
+    return when {
+        m % 2 == 0 && m % 3 == 0 -> "."
+        m % 2 == 0 -> "*"
+        m % 5 == 0 -> if (i < 0) "-" else "+"
+        else -> "?"
+    }
+}
 
 class Lesson12HomeWork {
 }
