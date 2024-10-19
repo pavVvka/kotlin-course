@@ -5,7 +5,55 @@ import java.util.Comparator
 val collection = listOf(1, 3, 6, 2, 4, 5, 18, 23, 28, 30, 40)
 val textCollection = listOf("one", "two", null, "four", "one")
 val grades = listOf(85, 58, 90, 74, 88, 67, 95, 92, 50, 42, 12)
-val list = listOf( "Стол", "табурет", "ваза", "Кружка", "Зеркало", "ковер", "Шкаф", "часы", "Люстра", "подушка", "Картина", "столик", "Вазон", "шторы", "Пуф", "книга", "Фоторамка", "светильник", "Коврик", "вешалка", "Подставка", "телевизор", "Комод", "полка", "Абажур", "диван", "Кресло", "занавеска", "Бра", "пепельница", "Глобус", "статуэтка", "Поднос", "фигурка", "Ключница", "плед", "Тумба", "игрушка", "Настенные часы", "подсвечник", "Журнальный столик", "сувенир", "Корзина для белья", "посуда", "Настольная лампа", "торшер", "Этажерка" )
+val list = listOf(
+    "Стол",
+    "табурет",
+    "ваза",
+    "Кружка",
+    "Зеркало",
+    "ковер",
+    "Шкаф",
+    "часы",
+    "Люстра",
+    "подушка",
+    "Картина",
+    "столик",
+    "Вазон",
+    "шторы",
+    "Пуф",
+    "книга",
+    "Фоторамка",
+    "светильник",
+    "Коврик",
+    "вешалка",
+    "Подставка",
+    "телевизор",
+    "Комод",
+    "полка",
+    "Абажур",
+    "диван",
+    "Кресло",
+    "занавеска",
+    "Бра",
+    "пепельница",
+    "Глобус",
+    "статуэтка",
+    "Поднос",
+    "фигурка",
+    "Ключница",
+    "плед",
+    "Тумба",
+    "игрушка",
+    "Настенные часы",
+    "подсвечник",
+    "Журнальный столик",
+    "сувенир",
+    "Корзина для белья",
+    "посуда",
+    "Настольная лампа",
+    "торшер",
+    "Этажерка"
+)
 val numbers = listOf(1, 3, 5, 7, 3, 1, 8, 9, 9, 7)
 
 fun main() {
@@ -21,7 +69,9 @@ fun main() {
 //Взять элемент по индексу или создать значение если индекса не существует
     println(collection.getOrElse(10) { 99 })
 //Собрать коллекцию в строку
-    println(collection.joinToString { "$it" })
+    println("tostring")
+    println(collection.joinToString { "$it" }) // == .joinToString()
+    println(collection.joinToString (" "))
 //Посчитать сумму всех значений
     println(collection.sum())
 //Посчитать среднее
@@ -42,12 +92,13 @@ fun main() {
 //Выбрать числа, которые не делятся на 2 и 3 одновременно
     println(collection.filterNot { it % 2 == 0 && it % 3 == 0 })
 //Очистить текстовую коллекцию от null элементов
-    println(textCollection.filterNot { it == null })
+    println(textCollection.filterNot { it == null }) // == .filterNot()
 //Преобразовать текстовую коллекцию в коллекцию длин слов
     println(textCollection.map { it?.length }) // [3, 3, null, 4]
 //Преобразовать текстовую коллекцию в мапу, где ключи - слова, а значения - перевёрнутые слова
     println(textCollection.associate { it to it?.reversed() }) // {one=eno, two=owt, null=null, four=ruof}
     println(textCollection.associateWith { it?.reversed() })
+    println(textCollection.map { it?.reversed() }) // создаёт список перевёрнутых значений, а не мапу.
 //Отсортировать список в алфавитном порядке
     println(textCollection.filterNotNull().sorted())  // [four, one, two]
     println(textCollection.filterNotNull().sortedBy { it })
@@ -59,9 +110,12 @@ fun main() {
 //Отсортировать список по убыванию
     println(textCollection.filterNotNull().sortedDescending()) // [two, one, four]
 //Распечатать квадраты элементов списка
-    println(collection.map { it * it })
+    // println(collection.map { it * it })
+    collection.forEach() { print(it * it) }
+    println(" <--- .forEach() { print(it * it) }")
 //Группировать список по первой букве слов
     println(textCollection.groupBy { it?.first() }) // {o=[one, om], t=[two], null=[null], f=[four]}
+    println(textCollection.groupBy { it?.firstOrNull() })
 //Очистить список от дублей
     println(textCollection.distinct())
 //Взять первые 3 элемента списка
@@ -105,11 +159,14 @@ fun main() {
 
     // =======================================================================
     //Задание 3: Анализ Учебных Оценок
-    println("\n\n===> Задание 2: Характеристика числовой коллекции\n")
+    println("\n\n===> 3: Анализ Учебных Оценок\n")
 //Начальные значения: val grades = listOf(85, 58, 90, 74, 88, 67, 95, 92, 50, 42, 12)
 //Цель: Отфильтровать удовлетворительные оценки (>=60),
 // отсортировать оставшиеся по возрастанию и взять первые 3.
-    val gradesFiltered = grades.filter { it >= 60 }.sorted().take(3)
+    val gradesFiltered = grades
+        .filter { it >= 60 }
+        .sorted()
+        .take(3)
     println("gradesFiltered: $gradesFiltered")
 
     // =======================================================================
@@ -134,7 +191,7 @@ fun main() {
 //Начальные значения: val numbers = listOf(1, 3, 5, 7, 3, 1, 8, 9, 9, 7)
 //Цель: Отобрать уникальные числа, отсортировать по убыванию и сгруппировать по четности
 // (“четные” и “нечетные”).
-    val setList = numbers.toSet().sortedDescending().groupBy { if (it % 2 == 0) "четные" else "нечетные"}
+    val setList = numbers.toSet().sortedDescending().groupBy { if (it % 2 == 0) "четные" else "нечетные" }
     // 1
     val evenOrNot = setList.toSortedMap(Comparator.reverseOrder())
     println(evenOrNot)
@@ -148,19 +205,24 @@ fun main() {
     // 4
     println("setList: ${setList.toSortedMap(compareBy { if (it == "четные") 0 else 1 })}")
 
+
+    val setList2 = numbers.distinct().sortedDescending().groupBy { if (it % 2 == 0) "четные" else "нечетные" }
+    println("setList2: $setList2")
+
+
     //Задание 7: Поиск первого подходящего элемента
     println("\n\n===> Задание 7: Поиск первого подходящего элемента.\n")
     //Начальные значения: val ages = listOf(22, 18, 30, 45, 17, null, 60)
     //Цель: Найти первый возраст в списке, который соответствует условию (больше 18),
     // преобразовать его к строке, или вернуть сообщение "Подходящий возраст не найден".
     val ages = listOf(22, 18, 30, 45, 17, null, 60)
+    val short = ages.filterNotNull().filter { it > 18 }
+    println(short)
 
-
+    val short2 = ages.filterNotNull().firstOrNull { it > 18 }?.toString() ?: "Подходящий возраст не найден"
+    println(short2)
 
 }
-
-
-
 
 
 //Задание 2: Характеристика числовой коллекции
