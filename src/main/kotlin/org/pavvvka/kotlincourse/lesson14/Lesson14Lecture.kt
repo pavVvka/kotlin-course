@@ -1,4 +1,4 @@
-package org.pavvvka.kotlincourse.Lesson14
+package org.pavvvka.kotlincourse.lesson14
 
 fun main() {
 
